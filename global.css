@@ -23,6 +23,7 @@ label{
 
 input{
     border: 2px solid #FA8005 ;
+    border-radius: 4px;
 }
 
 canvas {
@@ -84,9 +85,10 @@ canvas {
 }
 
 .controls #upload{
+    width: 170px;
     padding:8px;
     background-color: #FA8005; 
-    color: white;
+    color: #FA8005;
     font-size: 16px;
     text-align: center;
     cursor: pointer;
