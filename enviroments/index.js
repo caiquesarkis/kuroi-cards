@@ -1,4 +1,4 @@
 export const enviroment = {
     "basePath":
-        window.location.hostname !== 'https://caiquesarkis.github.io/' ? ' ' : '/kuroi-cards'
+        window.location.hostname !== 'https://caiquesarkis.github.io' ? '' : '/kuroi-cards'
 };
