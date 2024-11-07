@@ -15,6 +15,12 @@ label{
     font-family: "MedievalSharp", cursive;
 }
 
+.section-title{
+    font-size: 24px;
+    font-family: "MedievalSharp", cursive;
+    color: black;
+}
+
 input{
     border: 2px solid #FA8005 ;
 }
@@ -78,7 +84,7 @@ canvas {
 }
 
 .controls #upload{
-    padding:24px;
+    padding:8px;
     background-color: #FA8005; 
     color: white;
     font-size: 16px;
