@@ -44,26 +44,27 @@
         </canvas>
     </div>
 
-    <h2>Preencha</h2>
-
     <!-- Controls -->
     <div class="controls"
-        style="display: flex; gap: 64px; justify-content: center; align-items: center; flex-wrap: wrap;">
+        style="display: flex; gap: 32px; justify-content: center; align-items: center; flex-wrap: wrap;">
 
-        <div class="p-0">
-            <label class="section-title mb-2 d-flex fs-1 mb-2 mt-4 mb-2 border border-3 border-warning bg-warning-subtle p-3 rounded" for="nome">Imagem 🥷</label>
+        <div class="d-flex flex-column align-items-center">
 
-        <div class="p-0">
-                <p class="fs-6 mb-2 .text-danger-emphasis">Selecione a melhor imagem do seu personagem.</p>
-                <div>
-                    <input style="display: block;" name="upload" type="file" id="upload" accept="image/*">
-                </div>
-            </div>
+        <label
+            class="section-title mb-4 fs-1 mb-2 mt-4 mb-2 border border-3 border-warning bg-warning-subtle p-3 rounded"
+            for="nome">Imagem 🥷</label>
+
+        <p class="fs-6 mb-2 .text-danger-emphasis">Selecione a melhor imagem do seu personagem.</p>
+        <div>
+            <input style="display: block;" name="upload" type="file" id="upload" accept="image/*">
+        </div>
         </div>
 
         <!-- Sobre Section -->
         <div class="sobre">
-            <label class="section-title mb-2 d-flex fs-1 mb-2 mt-4 mb-2 border border-3 border-warning bg-warning-subtle p-3 rounded" for="nome">Larp 👹</label>
+            <label
+                class="section-title mb-2 fs-1 mb-2 mt-4 mb-2 border border-3 border-warning bg-warning-subtle p-3 rounded"
+                for="nome">Larp 👹</label>
             <div class="p-4">
 
                 <label for="nome">Nick:</label>
@@ -99,17 +100,25 @@
 
         <!-- Stats Section -->
         <div class="stats">
-            <label class="section-title mb-2 d-flex fs-1 mb-2 mt-4 mb-2 border border-3 border-warning bg-warning-subtle p-3 rounded" for="nome">Stats 🎴</label>
+            <label
+                class="section-title mb-2 fs-1 mb-2 mt-4 mb-2 border border-3 border-warning bg-warning-subtle p-3 rounded"
+                for="nome">Stats 🎴</label>
 
-            <div class="p-4 d-flex flex-column">
-                <label for="atk">Atk:</label>
-                <input type="number" id="atk" name="atk" min="0"><br>
+            <div class="p-4 d-flex flex-column justify-start">
+                <div class="d-flex flex-wrap">
+                    <label for="atk">Atk:</label>
+                    <input type="number" id="atk" name="atk" min="0"><br>
+                </div>
 
-                <label for="def">Def:</label>
-                <input type="number" id="def" name="def" min="0"><br>
+                <div class="d-flex flex-wrap">
+                    <label for="def">Def:</label>
+                    <input type="number" id="def" name="def" min="0"><br>
+                </div>
 
-                <label for="vel">Vel:</label>
-                <input type="number" id="vel" name="vel" min="0">
+                <div class="d-flex flex-wrap">
+                    <label for="vel">Vel:</label>
+                    <input type="number" id="vel" name="vel" min="0">
+                </div>
             </div>
         </div>
     </div>

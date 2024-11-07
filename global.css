@@ -19,6 +19,7 @@ label{
     font-size: 24px;
     font-family: "MedievalSharp", cursive;
     color: black;
+    width: 100%;
 }
 
 input{
@@ -51,8 +52,9 @@ canvas {
     font-size: 24px;    
     display: flex;
     flex-direction: column;
-    align-items: start;
-    justify-content: left;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .controls.sobre h3{
@@ -84,9 +86,14 @@ canvas {
     font-weight: 600;
 }
 
+.stats input{
+    width: 100%;
+    display: block;
+}
+
 .controls #upload{
-    width: 170px;
-    padding:8px;
+    width: 185px;
+    padding:16px;
     background-color: #FA8005; 
     color: #FA8005;
     font-size: 16px;
@@ -113,6 +120,11 @@ canvas {
     cursor: pointer;
 }
 
+#download:hover{
+    cursor: pointer;
+    transform: scale(1.15);
+    transition: transform 0.3s ease-in-out;
+}
 
 #card-generator-title{
     font-size: 48px;
@@ -137,4 +149,10 @@ canvas {
   font-family: "MedievalSharp", cursive;
   font-weight: 400;
   font-style: normal;
+}
+
+@media (max-width: 360px) {
+    .controls{
+        padding: 0;
+    }
 }
