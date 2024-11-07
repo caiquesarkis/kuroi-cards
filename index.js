@@ -52,7 +52,7 @@ const drawText = (text, x = 0, y = 0, fontSize = 20, color = 'black') => {
 };
 
 // Draw initial template images
-drawImage('/kuroi-cards/blob/main' + '/assets/kuroi-card-template.png');
+drawImage(enviroment.basePath + '/assets/kuroi-card-template.png');
 drawImage(enviroment.basePath + '/assets/kuroi-logo-60.png', 17.5, 17.5, 80, 80); // Draw logo
 
 // Handle Image Upload
