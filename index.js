@@ -50,8 +50,8 @@ const drawText = (text, x = 0, y = 0, fontSize = 20, color = 'black') => {
 };
 
 // Draw initial template images
-drawImage('assets/kuroi-card-template.png');
-drawImage('assets/kuroi-logo-60.png', 17.5, 17.5, 80, 80); // Draw logo
+drawImage('/kuroi-cards/assets/kuroi-card-template.png');
+drawImage('/kuroi-cards/assets/kuroi-logo-60.png', 17.5, 17.5, 80, 80); // Draw logo
 
 // Handle Image Upload
 $uploadInput.on('change', (event) => {
@@ -63,7 +63,7 @@ $uploadInput.on('change', (event) => {
             const offset = 278
         drawImage(image, (canvas.width - offset)/2, (canvas.height- offset)/2 - 35, offset, offset + 35); // Draw at top-left corner
 
-        drawImage('assets/kuroi-logo-60.png', 17.5, 17.5, 80, 80); // Draw logo
+        drawImage('/kuroi-cards/assets/kuroi-logo-60.png', 17.5, 17.5, 80, 80); // Draw logo
         };
     }
 });
