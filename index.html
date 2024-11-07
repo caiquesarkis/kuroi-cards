@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kuroi Cards: Generator</title>
+
+    <!-- Scripts -->
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    <!-- Boostrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Fonts -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    </style>
+
+    <!-- Styles -->
+    <link rel="icon" type="image/x-icon" href="/assets/kuroi-logo.png">
+
+    <link rel="stylesheet" href="styles/image/image.css">
+    <link rel="stylesheet" href="styles/global.css">
+</head>
+
+<body>
+
+    <h1 id="card-generator-title">Kuroi 🐍 <strong>Card</strong></h1>
+    <h2 id="card-generator-subtitle">Generator</h2>
+
+    <!-- Canvas Element -->
+    <div id="canvas-container">
+        <canvas id="canvas" width="343" height="500">
+            <p>Your browser does not support the HTML5 canvas tag.</p>
+        </canvas>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls" style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+
+        <div>
+            <label class="mb-2" for="nome">Selecione uma Imagem</label>
+            <input style="display: block; padding: 14px 0" name="upload" type="file" id="upload" accept="image/*">
+        </div>
+
+        <!-- Sobre Section -->
+        <div class="sobre">
+            <h3 class="fs-1 mb-2 mt-4">Sobre</h3>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome"><br>
+
+            <label for="descricao">Descrição:</label>
+            <p class="fs-6 .text-danger-emphasis">Escreva de forma simples o LARP do seu personagem</p>
+            <textarea class="form-control" placeholder="Escreva aqui..."  id="descricao" name="descricao"></textarea><br>
+
+            <div class="dropdown d-flex flex-wrap">
+                <label class="me-4" for="cargo">Cargo Hierárquico</label>
+                <button class="btn btn-lg  btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Cargo
+                </button>
+                <ul id="cargo-selector" class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Gaijin</a></li>
+                    <li><a class="dropdown-item" href="#">Ashigaru</a></li>
+                    <li><a class="dropdown-item" href="#">Soldado Graduado</a></li>
+                    <li><a class="dropdown-item" href="#">Cadete</a></li>
+                    <li><a class="dropdown-item" href="#">Tenente</a></li>
+                    <li><a class="dropdown-item" href="#">General</a></li>
+                    <li><a class="dropdown-item" href="#">Guerreiro Lendário</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="stats">
+        <h3>Stats</h3>
+        <label for="atk">Atk:</label>
+        <input type="number" id="atk" name="atk" min="0"><br>
+
+        <label for="def">Def:</label>
+        <input type="number" id="def" name="def" min="0"><br>
+
+        <label for="vel">Vel:</label>
+        <input type="number" id="vel" name="vel" min="0">
+    </div>
+
+
+    <div style="margin-top:24px">
+        <button id="download" type="button" name="download">Baixar Card
+            <strong>💳</strong></button>
+    </div>
+
+    </div>
+
+    <!-- Scripts -->
+
+    <!-- Boostrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <!-- Image Generator -->
+    <script src="scripts/image/image.js"></script>
+
+</body>
+
+</html>
