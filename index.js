@@ -10,10 +10,6 @@ const canvas = $canvas[0];
 const ctx = canvas.getContext('2d');
 const $uploadInput = $('#upload');
 const $downloadButton = $('#download');
-const $atkLabel = $('#atk');
-const $defLabel = $('#def');
-const $velLabel = $('#vel');
-
 
 
 // Project config
@@ -22,6 +18,8 @@ const CanvasConfig = {
     width: 343,//272,
     height: 500
 }
+
+ctx.clearRect(0,0,canvas.width, canvas.height)
 
 // DrawImage function
 const drawImage = (image, x = 0, y = 0, width = canvas.width, height = canvas.height) => {

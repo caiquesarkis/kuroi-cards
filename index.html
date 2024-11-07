@@ -50,14 +50,14 @@
 
         <div class="d-flex flex-column align-items-center">
 
-        <label
-            class="section-title mb-4 fs-1 mb-2 mt-4 mb-2 border border-3 border-warning bg-warning-subtle p-3 rounded"
-            for="nome">Imagem 🥷</label>
+            <label
+                class="section-title mb-4 fs-1 mb-2 mt-4 mb-2 border border-3 border-warning bg-warning-subtle p-3 rounded"
+                for="nome">Imagem 🥷</label>
 
-        <p class="fs-6 mb-2 .text-danger-emphasis">Selecione a melhor imagem do seu personagem.</p>
-        <div>
-            <input style="display: block;" name="upload" type="file" id="upload" accept="image/*">
-        </div>
+            <p class="fs-6 mb-2 .text-danger-emphasis">Selecione a melhor imagem do seu personagem.</p>
+            <div>
+                <input style="display: block;" name="upload" type="file" id="upload" accept="image/*">
+            </div>
         </div>
 
         <!-- Sobre Section -->
@@ -76,8 +76,9 @@
                 <textarea class="form-control" placeholder="Escreva aqui..." id="descricao"
                     name="descricao"></textarea><br>
 
-                <div class="dropdown d-flex flex-wrap">
+                <div class="dropdown d-flex flex-column align-items-center">
                     <label class="me-4 mb-2" for="cargo">Cargo Hierárquico</label>
+                    <p class="fs-6 .text-danger-emphasis">Nível Hierarquico da Kuroi Orochi🐍</p>
                     <button class="btn btn-lg   btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         Cargo
@@ -119,6 +120,56 @@
                     <label for="vel">Vel:</label>
                     <input type="number" id="vel" name="vel" min="0">
                 </div>
+            </div>
+        </div>
+
+        <!-- Domínios Section -->
+        <div class="dominios">
+            <label
+                class="section-title mb-2 fs-1 mb-2 mt-4 mb-2 border border-3 border-warning bg-warning-subtle p-3 rounded"
+                for="nome">Domínios ⚔️</label>
+
+            <div class="dropdown mt-4 d-flex flex-column align-items-center">
+                <p class="fs-6 .text-danger-emphasis">Categorias de dominios de equipamentos</p>
+                <div class="mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="option1" id="option1">
+                        <label class="form-check-label" for="option1">
+                            Espada
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="option2" id="option2">
+                        <label class="form-check-label" for="option2">
+                            Espada e Escudo
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="option3" id="option3">
+                        <label class="form-check-label" for="option3">
+                            Dual
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="option3" id="option3">
+                        <label class="form-check-label" for="option3">
+                            Lança
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="option3" id="option3">
+                        <label class="form-check-label" for="option3">
+                            Machado
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="option3" id="option3">
+                        <label class="form-check-label" for="option3">
+                            Arco
+                        </label>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
