@@ -44,56 +44,73 @@
         </canvas>
     </div>
 
-    <!-- Controls -->
-    <div class="controls" style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+    <h2>Preencha</h2>
 
-        <div>
-            <label class="mb-2" for="nome">Selecione uma Imagem</label>
-            <input style="display: block; padding: 14px 0" name="upload" type="file" id="upload" accept="image/*">
+    <!-- Controls -->
+    <div class="controls"
+        style="display: flex; gap: 64px; justify-content: center; align-items: center; flex-wrap: wrap;">
+
+        <div class="container-fluid p-0">
+            <label class="mb-2 d-flex  fs-1 mb-2 mt-4 mb-2 bg-white p-3 rounded" for="nome">Imagem 🥷</label>
+
+            <div class="p-4">
+                <input style="display: block;" name="upload" type="file" id="upload" accept="image/*">
+                <p class="fs-6 mt-2 .text-danger-emphasis">Selecione uma imagem do seu personagem.</p>
+            </div>
         </div>
 
         <!-- Sobre Section -->
         <div class="sobre">
-            <h3 class="fs-1 mb-2 mt-4">Sobre</h3>
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome"><br>
+            <h3 class="fs-1 mb-4 bg-white p-3 rounded">Larp 👹</h3>
+            <div class="p-4">
 
-            <label for="descricao">Descrição:</label>
-            <p class="fs-6 .text-danger-emphasis">Escreva de forma simples o LARP do seu personagem</p>
-            <textarea class="form-control" placeholder="Escreva aqui..."  id="descricao" name="descricao"></textarea><br>
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome"><br>
 
-            <div class="dropdown d-flex flex-wrap">
-                <label class="me-4" for="cargo">Cargo Hierárquico</label>
-                <button class="btn btn-lg  btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    Cargo
-                </button>
-                <ul id="cargo-selector" class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Gaijin</a></li>
-                    <li><a class="dropdown-item" href="#">Ashigaru</a></li>
-                    <li><a class="dropdown-item" href="#">Soldado Graduado</a></li>
-                    <li><a class="dropdown-item" href="#">Cadete</a></li>
-                    <li><a class="dropdown-item" href="#">Tenente</a></li>
-                    <li><a class="dropdown-item" href="#">General</a></li>
-                    <li><a class="dropdown-item" href="#">Guerreiro Lendário</a></li>
-                </ul>
+                <label for="descricao">Descrição:</label>
+                <p class="fs-6 .text-danger-emphasis">Escreva de forma simples o LARP do seu personagem</p>
+                <textarea class="form-control" placeholder="Escreva aqui..." id="descricao"
+                    name="descricao"></textarea><br>
+
+                <div class="dropdown d-flex flex-wrap">
+                    <label class="me-4 mb-2" for="cargo">Cargo Hierárquico</label>
+                    <button class="btn btn-lg   btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Cargo
+                    </button>
+                    <ul id="cargo-selector" class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Gaijin</a></li>
+                        <li><a class="dropdown-item" href="#">Ashigaru</a></li>
+                        <li><a class="dropdown-item" href="#">Soldado Graduado</a></li>
+                        <li><a class="dropdown-item" href="#">Cadete</a></li>
+                        <li><a class="dropdown-item" href="#">Tenente</a></li>
+                        <li><a class="dropdown-item" href="#">General</a></li>
+                        <li><a class="dropdown-item" href="#">Guerreiro Lendário</a></li>
+                    </ul>
+                </div>
+
             </div>
+        </div>
 
+
+
+        <!-- Stats Section -->
+        <div class="stats">
+            <h3 class="fs-1 mb-4 bg-white p-3 rounded">Stats 🎴</h3>
+
+            <div class="p-4 d-flex flex-column">
+                <label for="atk">Atk:</label>
+                <input type="number" id="atk" name="atk" min="0"><br>
+
+                <label for="def">Def:</label>
+                <input type="number" id="def" name="def" min="0"><br>
+
+                <label for="vel">Vel:</label>
+                <input type="number" id="vel" name="vel" min="0">
+            </div>
         </div>
     </div>
 
-    <!-- Stats Section -->
-    <div class="stats">
-        <h3>Stats</h3>
-        <label for="atk">Atk:</label>
-        <input type="number" id="atk" name="atk" min="0"><br>
-
-        <label for="def">Def:</label>
-        <input type="number" id="def" name="def" min="0"><br>
-
-        <label for="vel">Vel:</label>
-        <input type="number" id="vel" name="vel" min="0">
-    </div>
 
 
     <div style="margin-top:24px">
@@ -111,6 +128,7 @@
         crossorigin="anonymous"></script>
 
 </body>
-    <!-- Image Generator -->
-    <script src="index.js"></script>    
+<!-- Image Generator -->
+<script type="module" src="index.js"></script>
+
 </html>

@@ -1,3 +1,5 @@
+import { enviroment } from './enviroments/index.js';
+
 // Use jQuery to select elements
 const $canvas = $('#canvas');
 const canvas = $canvas[0];
@@ -50,8 +52,8 @@ const drawText = (text, x = 0, y = 0, fontSize = 20, color = 'black') => {
 };
 
 // Draw initial template images
-drawImage('/kuroi-cards/assets/kuroi-card-template.png');
-drawImage('/kuroi-cards/assets/kuroi-logo-60.png', 17.5, 17.5, 80, 80); // Draw logo
+drawImage(enviroment.basePath + '/assets/kuroi-card-template.png');
+drawImage(enviroment.basePath + '/assets/kuroi-logo-60.png', 17.5, 17.5, 80, 80); // Draw logo
 
 // Handle Image Upload
 $uploadInput.on('change', (event) => {
@@ -63,7 +65,7 @@ $uploadInput.on('change', (event) => {
             const offset = 278
         drawImage(image, (canvas.width - offset)/2, (canvas.height- offset)/2 - 35, offset, offset + 35); // Draw at top-left corner
 
-        drawImage('/kuroi-cards/assets/kuroi-logo-60.png', 17.5, 17.5, 80, 80); // Draw logo
+        drawImage(enviroment.basePath + '/assets/kuroi-logo-60.png', 17.5, 17.5, 80, 80); // Draw logo
         };
     }
 });
@@ -97,7 +99,7 @@ $('#vel').on('input', (event) => {
 $('#nome').on('input', (event) => {
     const nomeValue = event.target.value;
     
-    drawText(`${nomeValue}`, canvas.width*0.3, canvas.height* 0.14, 30, 'black');
+    drawText(`${nomeValue.slice(0,16)}`, canvas.width*0.3, canvas.height* 0.13, 28, 'black');
 });
 
 
