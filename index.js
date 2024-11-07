@@ -1,5 +1,9 @@
 import { enviroment } from './enviroments/index.js';
 
+// Render FavIcon dinamically
+
+$("#favicon").attr("href","/kuroi-cards/assets/kuroi-logo-60.png");
+
 // Use jQuery to select elements
 const $canvas = $('#canvas');
 const canvas = $canvas[0];
