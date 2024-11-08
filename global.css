@@ -10,6 +10,13 @@ body {
     margin: 0;
 }
 
+input, textarea, select, [type="checkbox"], button, .dropdown-toggle, .dropdown-menu{
+    border: 2px solid #FA8005 ;
+    border-radius: 4px;
+}
+
+
+
 label{
     font-size: 24px;
     font-family: "MedievalSharp", cursive;
@@ -22,15 +29,14 @@ label{
     width: 100%;
 }
 
-input{
-    border: 2px solid #FA8005 ;
-    border-radius: 4px;
-}
 
 canvas {
     background-color: transparent;
       position: sticky;
   z-index: 10; /* Optional: ensures the canvas is above other elements */
+    border-radius: 20px;
+
+  box-shadow:   0 0 8px rgb(255, 105, 5);
 }
 
 
@@ -41,9 +47,6 @@ canvas {
     transition: transform 0.3s ease-in-out;
 }
 
-.dropdown-menu #cargo-selector{
-
-}
 
 .controls {
     padding: 40px;

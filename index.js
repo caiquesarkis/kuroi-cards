@@ -64,9 +64,7 @@ function initializeFields() {
   const velValue = localStorage.getItem("velValue");
   const nomeValue = localStorage.getItem("nomeValue");
   const larpDescValue = localStorage.getItem("larpDescValue");
-  const selectedDominios = JSON.parse(
-    localStorage.getItem("selectedDominios")
-  );
+  const selectedDominios = JSON.parse(localStorage.getItem("selectedDominios"));
 
   // Set values if they exist
   if (atkValue) $("#atk").val(atkValue);
@@ -131,6 +129,19 @@ $("#cargo-selector .dropdown-item").on("click", function (event) {
   drawUI();
 });
 
+// Initialize Casa value from localStorage
+const casaValue = localStorage.getItem("houseValue") ?? "Casa";
+$("#casa-button").text(casaValue);
+
+// Casa Selection Event
+$("#casa-selector .dropdown-item").on("click", function (event) {
+  event.preventDefault();
+  const selectedCasa = $(this).data("value");
+  localStorage.setItem("houseValue", selectedCasa);
+  $("#casa-button").text(selectedCasa);
+  drawUI(); // Redraw the canvas with the new value
+});
+
 // Clear data from localStorage and reset the canvas
 $("#clear-data").on("click", () => {
   // Clear all localStorage data
@@ -145,6 +156,26 @@ $("#clear-data").on("click", () => {
   drawUI();
 });
 
+// Icons for Cargo and House
+const cargoIcons = {
+  Gaijin: enviroment.basePath + "/assets/gaijin-icon.png",
+  Ashigaru: enviroment.basePath + "/assets/ashigaru-icon.png",
+  "Soldado Graduado": enviroment.basePath + "/assets/soldado-icon.png",
+  Cadete: enviroment.basePath + "/assets/cadete-icon.png",
+  Tenente: enviroment.basePath + "/assets/tenente-icon.png",
+  General: enviroment.basePath + "/assets/general-icon.png",
+  "Guerreiro Lendário": enviroment.basePath + "/assets/guerreiro-lendario-icon.png",
+  "capitao": enviroment.basePath + "/assets/capitao-icon.png",
+};
+
+// House Icons
+const houseIcons = {
+  Víboras: enviroment.basePath + "/assets/viboras-icon.png",
+  Estranguladoras: enviroment.basePath + "/assets/estranguladoras-icon.png",
+  Serpentes: enviroment.basePath + "/assets/serpentes-icon.png",
+};
+
+// Dominios Icons
 const dominioIcons = {
   Espada: enviroment.basePath + "/assets/espada-icon.png",
   "Espada e Escudo": enviroment.basePath + "/assets/espada-escudo-icon.png",
@@ -321,12 +352,44 @@ const drawUI = async () => {
     28,
     "black"
   );
+
+
   // Centered larp description
   const larpDesc = localStorage.getItem("larpDescValue") ?? "";
   ctx.font = "18px Arial";
   const textWidth = ctx.measureText(larpDesc).width;
   const xPos = (canvas.width - textWidth) / 2; // Center x-position
   drawText(larpDesc, xPos, canvas.height * 0.88, 18, "black");
+
+  // Render Cargo text with icon
+  const cargoValue = localStorage.getItem("cargoValue") ?? "Cargo";
+  const cargoIconPath = cargoIcons[cargoValue] || null;
+
+  if (cargoIconPath) {
+    const cargoIcon = await loadImage(cargoIconPath);
+    ctx.drawImage(
+      cargoIcon,
+      canvas.width * 0.275,
+      canvas.height * 0.775,
+      25,
+      25
+    ); // Draw icon before the text
+  }
+
+  // Render House text with icon
+  const houseValue = localStorage.getItem("houseValue") ?? "viboras";
+  const houseIconPath = houseIcons[houseValue] || null;
+
+  if (houseIconPath) {
+    const houseIcon = await loadImage(houseIconPath);
+    ctx.drawImage(
+      houseIcon,
+      canvas.width * 0.67,
+      canvas.height * 0.768,
+      35,
+      35
+    ); // Draw House icon before the text
+  }
 
   // Draw selected "dominio" icons
   const selectedDominios = JSON.parse(

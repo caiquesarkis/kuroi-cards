@@ -97,46 +97,62 @@
                     class="section-title mb-2 fs-1 mb-2 mt-4 mb-4 border border-3 border-warning bg-warning-subtle p-3 rounded"
                     for="nome">Hierarquia 🏯</label>
 
-                <div class="dropdown mb-4 d-flex flex-column align-items-center">
+                <!-- Cargo Dropdown -->
+                <div
+                    class="dropdown mb-4 d-flex flex-column align-items-center">
                     <label class="me-4 mb-2" for="cargo">Cargo
                         Hierárquico</label>
-                    <p class="fs-6 .text-danger-emphasis">Nível Hierarquico da
-                        Kuroi Orochi🐍</p>
-                    <button class="btn btn-lg   btn-warning dropdown-toggle"
+                    <p class="fs-6 .text-danger-emphasis">Nível Hierárquico da
+                        Kuroi Orochi 🐍</p>
+                    <button class="btn btn-lg btn-light dropdown-toggle"
                         type="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         Cargo
                     </button>
                     <ul id="cargo-selector" class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Gaijin</a></li>
-                        <li><a class="dropdown-item" href="#">Ashigaru</a></li>
-                        <li><a class="dropdown-item" href="#">Soldado Graduado</a></li>
-                        <li><a class="dropdown-item" href="#">Cadete</a></li>
-                        <li><a class="dropdown-item" href="#">Tenente</a></li>
-                        <li><a class="dropdown-item" href="#">General</a></li>
-                        <li><a class="dropdown-item" href="#">GuerreiroLendário</a></li>
+                        <li><a class="dropdown-item" href="#"
+                                data-value="Gaijin">Gaijin</a></li>
+                        <li><a class="dropdown-item" href="#"
+                                data-value="Ashigaru">Ashigaru</a></li>
+                        <li><a class="dropdown-item" href="#"
+                                data-value="Soldado Graduado">Soldado
+                                Graduado</a></li>
+                        <li><a class="dropdown-item" href="#"
+                                data-value="Cadete">Cadete</a></li>
+                        <li><a class="dropdown-item" href="#"
+                                data-value="Tenente">Tenente</a></li>
+                        <li><a class="dropdown-item" href="#"
+                                data-value="General">General</a></li>
+                        <li><a class="dropdown-item" href="#"
+                                data-value="Guerreiro Lendário">Guerreiro
+                                Lendário</a></li>
+                        <li><a class="dropdown-item" href="#"
+                                data-value="capitao">Capitão</a></li>
                     </ul>
                 </div>
 
-                <!-- Casa Section -->
-                <div class="casa">
-                    <label class="me-4 mb-2" for="cargo">Casa</label>
-                    <p class="fs-6 .text-danger-emphasis">Caminho de
-                        responsábilidade: Víboras(duelos),
-                        Estranguladoras(estratégia de batalha) e o
-                        Serpentário(operações de negócio)</p>
-                    <button class="btn btn-lg btn-warning dropdown-toggle"
+                <!-- Casa Dropdown -->
+                <div
+                    class="dropdown mt-4 d-flex flex-column align-items-center">
+                    <label class="me-4 mb-2" for="casa">Casa</label>
+                    <p class="fs-6 .text-danger-emphasis">
+                        Caminho de responsabilidade: Víboras (duelos),
+                        Estranguladoras (estratégia de batalha), e o Serpentário
+                        (operações de negócio)
+                    </p>
+                    <button id="casa-button"
+                        class="btn btn-lg btn-light dropdown-toggle"
                         type="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         Casa
                     </button>
-                    <ul id="cargo-selector" class="dropdown-menu">
+                    <ul id="casa-selector" class="dropdown-menu">
                         <li><a class="dropdown-item" href="#"
-                                data-value="Gaijin">Víboras</a></li>
+                                data-value="Víboras">Víboras</a></li>
                         <li><a class="dropdown-item" href="#"
-                                data-value="Ashigaru">Estranguladoras</a></li>
+                                data-value="Estranguladoras">Estranguladoras</a></li>
                         <li><a class="dropdown-item" href="#"
-                                data-value="Soldado Graduado">Serpentes</a></li>
+                                data-value="Serpentes">Serpentes</a></li>
                     </ul>
                 </div>
 
