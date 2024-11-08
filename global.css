@@ -28,12 +28,11 @@ input{
 }
 
 canvas {
-    margin-top: 10px;
+    background-color: transparent;
+      position: sticky;
+  z-index: 10; /* Optional: ensures the canvas is above other elements */
 }
 
-.canvas{
-    box-shadow: 0 1px 50px rgba(255,255,255,1);
-}
 
 /* Pre-render the bigger shadow, but hide it */
 .canvas-container:hover{

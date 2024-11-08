@@ -10,19 +10,14 @@ const ctx = canvas.getContext("2d");
 const $uploadInput = $("#upload");
 const $downloadButton = $("#download");
 
-// Project config
-const CanvasConfig = { width: 343, height: 500 };
-const upperRectangleConfig = [33, 35, 275.5, 50, "#DB5C03", "orange", 2, 8];
-const footerRectangleConfig = [33, 380, 275.5, 98, "#DB5C03", "orange", 2, 8];
-
 // Draw Text function
 const drawText = (text, x = 0, y = 0, fontSize = 20, color = "black") => {
-  ctx.font = `${fontSize}px Arial`;
+  ctx.font = `${fontSize}px MedievalSharp`;
   ctx.fillStyle = color;
   ctx.fillText(text, x, y);
 };
 
-// Draw Rectangle function
+// Draw Rectangle functio
 const drawRectangle = (
   configArray = [0, 0, 100, 50, "blue", "black", 2, 10]
 ) => {
@@ -61,74 +56,180 @@ const drawRectangle = (
   ctx.stroke();
 };
 
+// Function to initialize fields with localStorage values
+function initializeFields() {
+  // Retrieve values from localStorage
+  const atkValue = localStorage.getItem("atkValue");
+  const defValue = localStorage.getItem("defValue");
+  const velValue = localStorage.getItem("velValue");
+  const nomeValue = localStorage.getItem("nomeValue");
+  const larpDescValue = localStorage.getItem("larpDescValue");
+  const selectedDominios = JSON.parse(
+    localStorage.getItem("selectedDominios")
+  );
+
+  // Set values if they exist
+  if (atkValue) $("#atk").val(atkValue);
+  if (defValue) $("#def").val(defValue);
+  if (velValue) $("#vel").val(velValue);
+  if (nomeValue) $("#nome").val(nomeValue);
+  if (larpDescValue) $("#descricao").val(larpDescValue);
+
+  // Set selected checkboxes for "dominios"
+  selectedDominios.forEach((dominio) => {
+    $(`#${dominio}`).prop("checked", true);
+  });
+
+  // Re-draw the UI with these initial values
+  drawUI();
+}
+
+// Call the initialize function after the DOM has loaded
+$(document).ready(() => {
+  initializeFields();
+});
+
 // Update ATK
 $("#atk").on("input", (event) => {
   const atkValue = event.target.value;
-  drawText(
-    `ATK: ${atkValue}`,
-    canvas.width * (0.26 - 0.1),
-    canvas.height * 0.94,
-    14,
-    "black"
-  );
+  localStorage.setItem("atkValue", atkValue);
+  drawUI();
 });
 
 // Update DEF
 $("#def").on("input", (event) => {
   const defValue = event.target.value;
-  drawText(
-    `DEF: ${defValue}`,
-    canvas.width * (0.26 + 0.14),
-    canvas.height * 0.94,
-    14,
-    "black"
-  );
+  localStorage.setItem("defValue", defValue);
+  drawUI();
 });
 
 // Update VEL
 $("#vel").on("input", (event) => {
   const velValue = event.target.value;
-  drawText(
-    `VEL: ${velValue}`,
-    canvas.width * (0.26 + 0.38),
-    canvas.height * 0.94,
-    14,
-    "black"
-  );
+  localStorage.setItem("velValue", velValue);
+  drawUI();
 });
 
 // Update NOME
 $("#nome").on("input", (event) => {
   const nomeValue = event.target.value;
-  drawText(nomeValue, canvas.width * 0.3, canvas.height * 0.13, 28, "black");
+  localStorage.setItem("nomeValue", nomeValue);
+  drawUI();
 });
+
+// Update larp description
+$("#descricao").on("input", (event) => {
+  const larpDescValue = event.target.value;
+  localStorage.setItem("larpDescValue", larpDescValue);
+  drawUI();
+});
+
+// Update Cargo
+$("#cargo-selector .dropdown-item").on("click", function (event) {
+  const cargoValue = $(this).data("value");
+  localStorage.setItem("cargoValue", cargoValue);
+  drawUI();
+});
+
+// Clear data from localStorage and reset the canvas
+$("#clear-data").on("click", () => {
+  // Clear all localStorage data
+  localStorage.clear();
+
+  // Reset input fields and uncheck all checkboxes
+  $("#nome, #descricao").val("");
+  $("#atk, #def, #vel").val("0");
+  $(".form-check-input").prop("checked", false);
+
+  // Re-draw the UI to reflect cleared data
+  drawUI();
+});
+
+const dominioIcons = {
+  Espada: enviroment.basePath + "/assets/espada-icon.png",
+  "Espada e Escudo": enviroment.basePath + "/assets/espada-escudo-icon.png",
+  Dual: enviroment.basePath + "/assets/dual-icon.png",
+  Lança: enviroment.basePath + "/assets/lanca-icon.png",
+  Machado: enviroment.basePath + "/assets/machado-icon.png",
+  Arco: enviroment.basePath + "/assets/arco-icon.png",
+};
+
+// Attach event listeners to each checkbox of dominio
+$("#espada, #espadaEscudo, #dual, #lanca, #machado, #arco").on(
+  "change",
+  updateSelectedDominios
+);
+
+// Function to update checked values in localStorage
+function updateSelectedDominios() {
+  const selectedDominios = [];
+  $(".form-check-input:checked").each(function () {
+    selectedDominios.push($(this).val());
+  });
+  localStorage.setItem("selectedDominios", JSON.stringify(selectedDominios));
+  drawUI();
+}
+
+// Função para redimensionar a imagem se necessário
+function resizeImage(imageBase64, maxWidth, maxHeight, callback) {
+  const img = new Image();
+
+  img.onload = () => {
+    // Verifica se a imagem precisa ser redimensionada
+    if (img.width > maxWidth || img.height > maxHeight) {
+      // Cria um canvas invisível
+      const canvas = document.createElement("canvas");
+      canvas.id = "image-resizer-canvas";
+      canvas.style.display = "none";
+      document.body.appendChild(canvas);
+
+      canvas.width = maxWidth;
+      canvas.height = maxHeight;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, maxWidth, maxHeight);
+
+      // Converte a imagem redimensionada para base64 e chama o callback
+      const resizedImage = canvas.toDataURL("image/jpeg", 0.8); // Ajuste a qualidade se necessário
+      callback(resizedImage);
+
+      // Remove o canvas após o redimensionamento
+      document.body.removeChild(canvas);
+    } else {
+      // Se não for necessário redimensionar, retorna a imagem original
+      callback(imageBase64);
+    }
+  };
+
+  img.src = imageBase64;
+}
 
 // Handle profile card Image Upload
 $uploadInput.on("change", (event) => {
   const file = event.target.files[0];
 
-  const reader = new FileReader();
-  reader.addEventListener(
-    "load",
-    () => {
-      // convert image file to base64 string
-      localStorage.setItem("canvas-image", reader.result);
-      drawUI();
-    },
-    false
-  );
-
   if (file) {
+    const reader = new FileReader();
+
+    reader.addEventListener(
+      "load",
+      () => {
+        const imageBase64 = reader.result;
+
+        // Define as dimensões máximas
+        const maxWidth = 343 * 5;
+        const maxHeight = 500 * 5;
+
+        // Redimensiona a imagem se necessário e armazena no localStorage
+        resizeImage(imageBase64, maxWidth, maxHeight, (finalImage) => {
+          localStorage.setItem("canvas-image", finalImage);
+          drawUI();
+        });
+      },
+      false
+    );
+
     reader.readAsDataURL(file);
   }
-
-  //   if (file) {
-
-  //     const image = new Image();
-  //     image.src = URL.createObjectURL(file);
-  //     // Optionally store the image URL in localStorage
-  //     localStorage.setItem("canvas-image", image.src);
-  //   }
 });
 
 // Handle Kuroi Card Download
@@ -150,26 +251,97 @@ const loadImage = (src) => {
 
 // App Logic - Drawing UI
 const drawUI = async () => {
+  // Load Images
   const kuroiCardTemplate = await loadImage(
     enviroment.basePath + "/assets/kuroi-card-template.png"
   );
+
   const kuroiLogo = await loadImage(
     enviroment.basePath + "/assets/kuroi-logo-60.png"
   );
 
   let cardPhoto = localStorage.getItem("canvas-image");
+
   if (localStorage.getItem("canvas-image") != null) {
     const canvasImageUrl = cardPhoto;
     cardPhoto = await loadImage(canvasImageUrl);
   }
 
+  // Kuroi Card Template
   ctx.drawImage(kuroiCardTemplate, 0, 0, canvas.width, canvas.height);
-  if (cardPhoto) ctx.drawImage(cardPhoto, 33.5, 83, 274.5, 299);
 
+  // Render character image
+  if (cardPhoto) ctx.drawImage(cardPhoto, 33.5, 80, 274.5, 305);
+
+  // Upper and lower UI rectangles
+  const upperRectangleConfig = [34, 30, 275.5, 50, "#DB5C03", "orange", 2, 8];
+  const footerRectangleConfig = [33, 380, 275.5, 98, "#DB5C03", "orange", 2, 8];
   drawRectangle(upperRectangleConfig);
   drawRectangle(footerRectangleConfig);
 
-  ctx.drawImage(kuroiLogo, 17.5, 17.5, 80, 80);
+  // Draw Kuroi Logo
+  ctx.drawImage(kuroiLogo, 20, 17, 80, 80);
+
+  // Draw Stats
+  drawText(
+    `ATK: ${localStorage.getItem("atkValue")}`,
+    canvas.width * 0.16,
+    canvas.height * 0.94,
+    14,
+    "black"
+  );
+  drawText(
+    `DEF: ${localStorage.getItem("defValue")}`,
+    canvas.width * 0.4,
+    canvas.height * 0.94,
+    14,
+    "black"
+  );
+  drawText(
+    `VEL: ${localStorage.getItem("velValue")}`,
+    canvas.width * 0.64,
+    canvas.height * 0.94,
+    14,
+    "black"
+  );
+  drawText(
+    `${localStorage.getItem("nomeValue") ?? ""}`,
+    canvas.width * 0.29,
+    canvas.height * 0.13,
+    28,
+    "black"
+  );
+
+  const cargoText = localStorage.getItem("cargoValue") ?? "";
+  const cargoTextWidth = ctx.measureText(cargoText).width;
+  drawText(
+    cargoText,
+    (canvas.width - cargoTextWidth) / 2, // Center the text horizontally
+    canvas.height * 0.82,
+    28,
+    "black"
+  );
+  // Centered larp description
+  const larpDesc = localStorage.getItem("larpDescValue") ?? "";
+  ctx.font = "18px Arial";
+  const textWidth = ctx.measureText(larpDesc).width;
+  const xPos = (canvas.width - textWidth) / 2; // Center x-position
+  drawText(larpDesc, xPos, canvas.height * 0.88, 18, "black");
+
+  // Draw selected "dominio" icons
+  const selectedDominios = JSON.parse(
+    localStorage.getItem("selectedDominios") || "[]"
+  );
+  let iconY = 100; // Starting y-position for icons
+
+  for (const dominio of selectedDominios) {
+    const iconPath = dominioIcons[dominio];
+    if (iconPath) {
+      const iconImage = await loadImage(iconPath);
+      ctx.drawImage(iconImage, 250, iconY, 50, 50); // Adjust icon size and position
+      iconY += 60; // Increment y-position for the next icon
+    }
+  }
 };
 
 // Initial UI Draw
