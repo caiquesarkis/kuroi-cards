@@ -158,14 +158,15 @@ $("#clear-data").on("click", () => {
 
 // Icons for Cargo and House
 const cargoIcons = {
-  Gaijin: enviroment.basePath + "/assets/gaijin-icon.png",
+  "Gaijin": enviroment.basePath + "/assets/gaijin-icon.png",
   Ashigaru: enviroment.basePath + "/assets/ashigaru-icon.png",
   "Soldado Graduado": enviroment.basePath + "/assets/soldado-icon.png",
   Cadete: enviroment.basePath + "/assets/cadete-icon.png",
   Tenente: enviroment.basePath + "/assets/tenente-icon.png",
   General: enviroment.basePath + "/assets/general-icon.png",
-  "Guerreiro Lendário": enviroment.basePath + "/assets/guerreiro-lendario-icon.png",
-  "capitao": enviroment.basePath + "/assets/capitao-icon.png",
+  "Lendário":
+    enviroment.basePath + "/assets/guerreiro-lendario-icon.png",
+  capitao: enviroment.basePath + "/assets/capitao-icon.png",
 };
 
 // House Icons
@@ -177,12 +178,12 @@ const houseIcons = {
 
 // Dominios Icons
 const dominioIcons = {
-  Espada: enviroment.basePath + "/assets/espada-icon.png",
-  "Espada e Escudo": enviroment.basePath + "/assets/espada-escudo-icon.png",
-  Dual: enviroment.basePath + "/assets/dual-icon.png",
-  Lança: enviroment.basePath + "/assets/lanca-icon.png",
-  Machado: enviroment.basePath + "/assets/machado-icon.png",
-  Arco: enviroment.basePath + "/assets/arco-icon.png",
+  espada: enviroment.basePath + "/assets/espada-icon.png",
+  espadaEscudo: enviroment.basePath + "/assets/espada-escudo-icon.png",
+  dual: enviroment.basePath + "/assets/dual-icon.png",
+  lanca: enviroment.basePath + "/assets/lanca-icon.png",
+  machado: enviroment.basePath + "/assets/machado-icon.png",
+  arco: enviroment.basePath + "/assets/arco-icon.png",
 };
 
 // Attach event listeners to each checkbox of dominio
@@ -195,7 +196,7 @@ $("#espada, #espadaEscudo, #dual, #lanca, #machado, #arco").on(
 function updateSelectedDominios() {
   const selectedDominios = [];
   $(".form-check-input:checked").each(function () {
-    selectedDominios.push($(this).val());
+    selectedDominios.push($(this).attr("id"));
   });
   localStorage.setItem("selectedDominios", JSON.stringify(selectedDominios));
   drawUI();
@@ -345,14 +346,15 @@ const drawUI = async () => {
 
   const cargoText = localStorage.getItem("cargoValue") ?? "";
   const cargoTextWidth = ctx.measureText(cargoText).width;
+
+  const cargoTextCenterWidth = (canvas.width - cargoTextWidth + 15) / 2 // Center the text horizontally
   drawText(
     cargoText,
-    (canvas.width - cargoTextWidth) / 2, // Center the text horizontally
+    cargoTextCenterWidth,
     canvas.height * 0.82,
-    28,
+    24,
     "black"
   );
-
 
   // Centered larp description
   const larpDesc = localStorage.getItem("larpDescValue") ?? "";
@@ -369,7 +371,7 @@ const drawUI = async () => {
     const cargoIcon = await loadImage(cargoIconPath);
     ctx.drawImage(
       cargoIcon,
-      canvas.width * 0.275,
+      cargoTextCenterWidth * 0.7,
       canvas.height * 0.775,
       25,
       25
